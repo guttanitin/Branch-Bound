@@ -6,10 +6,13 @@ public class BandB {
 
     public static boolean checkValidInput(String entry, String exit){
         char[] entrystring = new char[entry.length()];
+        for(int i = 0; i< entry.length(); i++){
+            entrystring[i] = entry.charAt(i);
+        }
         char[] exitstring = new char[exit.length()];
         boolean valid = true;
         for(int i = 0; i < entrystring.length; i++){
-            if(exit.indexOf(entrystring[i]) < i){
+            if(exit.indexOf(entrystring[i]) < i && entrystring[i] != '-' ){
                 valid = false;
             }
         }
@@ -27,8 +30,8 @@ public class BandB {
         String[] parts = input.split("\\s+");
         startpattern = parts[0];
         finalpattern = parts[1];
-        if(startpattern.length() < 3){
-            System.out.println("Invalid Entry input has to be more than 2 letters");
+        if(startpattern.length() < 3 || startpattern.length() != finalpattern.length()){
+            System.out.println("Invalid Entry by User");
         }
         else if (startpattern.equals(finalpattern)){
             System.out.print(startpattern + ' ' + finalpattern);
@@ -36,7 +39,7 @@ public class BandB {
         else {
             boolean validentry = checkValidInput(startpattern,finalpattern);
             if(!validentry){
-                System.out.println("Invalid Entry not a possible move");
+                System.out.println("Invalid Entry by Users");
             }
             else {
                 inputpattern = new char[startpattern.length()];
